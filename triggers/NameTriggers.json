@@ -1,0 +1,30 @@
+[
+    {
+        "TriggerName": "SwitchRealName",
+        "Condition": "{NameSwitch}",
+        "ConditionAnd": "{NameConvention, Converter=StringEquals, Parameter=Full Name}",
+        "Property": "Source",
+        "Value": "{Item.Driver.RealName, Converter=StringFormatReverse, Parameter={Item.Driver.RealName{{NameUpperString}}}}"
+    },
+    {
+        "TriggerName": "FallBackRealName",
+        "Condition": "{NameConvention, Converter=StringEquals, Parameter=Full Name}",
+        "ConditionAnd": "{Item.Driver.RealName, Converter=EmptyObjectToTrue}",
+        "Property": "Source",
+        "Value": "{Item.Driver.Name, Converter=StringFormatReverse, Parameter={Item.Driver.Name{{NameUpperString}}}}"
+    },
+    {
+        "TriggerName": "SwitchName",
+        "Condition": "{NameSwitch}",
+        "ConditionAnd": "{NameConvention, Converter=StringEquals, Parameter=Full Name}",
+        "Property": "Source",
+        "Value": "{Item.Driver.Name, Converter=StringFormatReverse, Parameter={Item.Driver.Name{{NameUpperString}}}}"
+    },
+    {
+        "TriggerName": "FallBackName",
+        "Condition": "{NameConvention, Converter=StringEquals, Parameter=Full Name}",
+        "ConditionAnd": "{Item.Driver.RealName, Converter=EmptyObjectToTrue}",
+        "Property": "RenderIf",
+        "Value": false
+    }
+]
