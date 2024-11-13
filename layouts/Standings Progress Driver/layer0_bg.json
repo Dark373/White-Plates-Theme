@@ -1,0 +1,21 @@
+{
+    "BlockRoot": {
+        "BlockType": "stack",
+        "Background": "{PrimaryColour}",
+        "RenderIf": "{ThemeBackground}",
+        "Items": [
+            {
+                "BlockType": "image",
+                "Height": "*",
+                "Width": "*",
+                "Colorize": {
+                    "IsEnabled": true,
+                    "Color": "{SecondaryColour}"
+                },
+                "ImageOptions": {
+                    "Path": "bg/bg.png"
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,489 @@
+{
+    "BlockRoot": {
+        "BlockType": "dock",
+        "Orientation": "Vertical",
+        "Margin": "24",
+        "Items": [
+            {
+                "BlockType": "dock",
+                "Background": "FFCC00",
+                "Height": 184,
+                "MarginBottom": 12,
+                "Items": [
+                    {
+                        "BlockType": "image",
+                        "MarginLeft": 35,
+                        "Height": "{FastestLapLeagueLogoSize}",
+                        "VerticalAlignment": "Center",
+                        "ImageOptions": {
+                            "Path": "{Season.LeagueInfo.LeagueLogo}"
+                        }
+                    },
+                    {
+                        "BlockType": "shape",
+                        "Width": 3,
+                        "HeightPercent": 50,
+                        "Margin": "40,0",
+                        "VerticalAlignment": "Center",
+                        "ShapeOptions": {
+                            "Fill": "FFFFFF"
+                        }
+                    },
+                    {
+                        "BlockType": "image",
+                        "HorizontalAlignment": "Left",
+                        "VerticalAlignment": "Center",
+                        "Height": 140,
+                        "Colorize": {
+                            "Color": "FFFFFF"
+                        },
+                        "ImageOptions": {
+                            "Path": "{Season.Championship.LogotypePath}"
+                        }
+                    },
+                    {
+                        "BlockType": "stack",
+                        "Orientation": "Vertical",
+                        "HorizontalAlignment": "Right",
+                        "VerticalAlignment": "Center",
+                        "Margin": "0,4,35,0",
+                        "Spacing": 4,
+                        "Items": [
+                            {
+                                "BlockType": "text",
+                                "HorizontalAlignment": "Right",
+                                "FontSize": 35,
+                                "Foreground": "000000",
+                                "FontName": "{F1-Black}",
+                                "Source": "[FASTEST LAP AWARD]"
+                            },
+                            {
+                                "BlockType": "text",
+                                "HorizontalAlignment": "Right",
+                                "FontSize": 27,
+                                "Foreground": "000000",
+                                "FontName": "{F1-Regular}",
+                                "Source": "[ROUND] {Event.Position, Converter=NumberSubtract, Parameter={Season.SeasonOverallNumberEvents, Converter=NumberSubtract, Parameter={Season.SeasonOverallNumberEventsExcludingNonChampionship}}}",
+                                "Triggers": [
+                                    {
+                                        "Condition": "{Event.IsChampionshipStatus, Converter=BoolReverse}",
+                                        "Property": "Source",
+                                        "Value": "[PRE-SEASON]"
+                                    }
+                                ]
+                            },
+                            {
+                                "BlockType": "text",
+                                "HorizontalAlignment": "Right",
+                                "FontSize": 22,
+                                "Foreground": "FF0000",
+                                "FontName": "{F1-Bold}",
+                                "Source": "{Event.Track.LocationName, Converter=StringToUpperString}"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "BlockType": "itemstack",
+                "Width": 1114,
+                "Height": 526,
+                "Background": "FECB00",
+                "Orientation": "Vertical",
+                "ItemStackOptions": {
+                    "ItemSource": "{Session.Drivers}",
+                    "OrderBy": "FastestLapTime",
+                    "Limit": 1,
+                    "ItemTemplate": {
+                        "BlockType": "stack",
+                        "BackgroundImage": "bg/fl.bg.png",
+                        "Width": 1114,
+                        "Height": 526,
+                        "Items": [
+                            {
+                                "BlockType": "dock",
+                                "BackgroundImage": "bg/fl.border.png",
+                                "ColorizeBackground": {
+                                    "Color": "FEE224"
+                                },
+                                "Items": [
+                                    {
+                                        "BlockType": "dock",
+                                        "Orientation": "Vertical",
+                                        "Width": "*",
+                                        "Spacing": 20,
+                                        "Margin": "25,25,0,10",
+                                        "Items": [
+                                            {
+                                                "BlockType": "stack",
+                                                "Height": "*",
+                                                "Spacing": -50,
+                                                "Items": [
+                                                    {
+                                                        "BlockType": "text",
+                                                        "Source": "[1]",
+                                                        "FontSize": 380,
+                                                        "FontName": "{F1-Bold}",
+                                                        "Foreground": "161425"
+                                                    },
+                                                    {
+                                                        "BlockType": "text",
+                                                        "Source": "[ST]",
+                                                        "FontSize": 190,
+                                                        "VerticalAlignment": "Top",
+                                                        "FontName": "{F1-Bold}",
+                                                        "Foreground": "161425"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "BlockType": "stack",
+                                                "Orientation": "Vertical",
+                                                "Height": "*",
+                                                "Items": [
+                                                    {
+                                                        "BlockType": "text",
+                                                        "HorizontalAlignment": "Left",
+                                                        "VerticalAlignment": "Center",
+                                                        "Source": "{Item.Driver.{{NameConvention}}, Converter=StringFormatReverse, Parameter={Item.Driver.{{NameConvention}}{{NameUpperString}}}}",
+                                                        "Height": "*",
+                                                        "Foreground": "FF0000",
+                                                        "FontSize": "{1stDriverNameFontSize}",
+                                                        "FontName": "{F1-Bold}",
+                                                        "Triggers": [
+                                                            {
+                                                                "Trigger": "SwitchRealName"
+                                                            },
+                                                            {
+                                                                "Trigger": "FallBackRealName"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "BlockType": "text",
+                                                        "RenderIf": "{NameConvention, Converter=StringEquals, Parameter=Full Name}",
+                                                        "HorizontalAlignment": "Left",
+                                                        "VerticalAlignment": "Center",
+                                                        "Source": "{Item.Driver.RealName, Converter=StringFormatReverse, Parameter={Item.Driver.RealName{{NameUpperString}}}}",
+                                                        "Height": "*",
+                                                        "Foreground": "FF0000",
+                                                        "FontSize": "{1stDriverNameFontSize}",
+                                                        "FontName": "{F1-Bold}",
+                                                        "Triggers": [
+                                                            {
+                                                                "Trigger": "SwitchName"
+                                                            },
+                                                            {
+                                                                "Trigger": "FallBackName"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "BlockType": "text",
+                                                "Source": "{Item.FastestLapTime}",
+                                                "FontSize": 70,
+                                                "VerticalAlignment": "Bottom",
+                                                "FontName": "{F1-Bold}",
+                                                "Foreground": "000000"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "BlockType": "image",
+                                        "HorizontalAlignment": "Right",
+                                        "VerticalAlignment": "Center",
+                                        "Height": 600,
+                                        "Width": 600,
+                                        "ImageOptions": {
+                                            "Path": "{Item.Team.LightLogotypePath}"
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                                "Property": "ImageOptions.Path",
+                                                "Value": "{Item.{{{Type}}}.LiveryPath}"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "BlockType": "stack",
+                "MarginTop": 12,
+                "Items": [
+                    {
+                        "BlockType": "itemstack",
+                        "Width": 551,
+                        "Height": 331,
+                        "Background": "FECB00",
+                        "Orientation": "Vertical",
+                        "MarginRight": 12,
+                        "ItemStackOptions": {
+                            "ItemSource": "{Session.Drivers}",
+                            "OrderBy": "FastestLapTime",
+                            "Limit": 1,
+                            "IndexStart": 1,
+                            "ItemTemplate": {
+                                "BlockType": "stack",
+                                "BackgroundImage": "bg/fl.bg.png",
+                                "Width": 551,
+                                "Height": 331,
+                                "Items": [
+                                    {
+                                        "BlockType": "dock",
+                                        "BackgroundImage": "bg/fl.border.png",
+                                        "Width": 551,
+                                        "Height": 331,
+                                        "ColorizeBackground": {
+                                            "Color": "DCDCDC"
+                                        },
+                                        "Items": [
+                                            {
+                                                "BlockType": "dock",
+                                                "Orientation": "Vertical",
+                                                "Width": "*",
+                                                "Spacing": 20,
+                                                "Margin": "25,25,0,10",
+                                                "Items": [
+                                                    {
+                                                        "BlockType": "stack",
+                                                        "Height": "*",
+                                                        "Items": [
+                                                            {
+                                                                "BlockType": "text",
+                                                                "Source": "[2]",
+                                                                "FontSize": 180,
+                                                                "FontName": "{F1-Bold}",
+                                                                "Foreground": "161425"
+                                                            },
+                                                            {
+                                                                "BlockType": "text",
+                                                                "Source": "[ND]",
+                                                                "FontSize": 60,
+                                                                "VerticalAlignment": "Top",
+                                                                "FontName": "{F1-Bold}",
+                                                                "Foreground": "161425"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "BlockType": "stack",
+                                                        "Orientation": "Vertical",
+                                                        "Height": "*",
+                                                        "Items": [
+                                                            {
+                                                                "BlockType": "text",
+                                                                "HorizontalAlignment": "Left",
+                                                                "VerticalAlignment": "Center",
+                                                                "Source": "{Item.Driver.{{NameConvention}}, Converter=StringFormatReverse, Parameter={Item.Driver.{{NameConvention}}{{NameUpperString}}}}",
+                                                                "Height": "*",
+                                                                "Foreground": "FF0000",
+                                                                "FontSize": "{2ndDriverNameFontSize}",
+                                                                "FontName": "{F1-Bold}",
+                                                                "Triggers": [
+                                                                    {
+                                                                        "Trigger": "SwitchRealName"
+                                                                    },
+                                                                    {
+                                                                        "Trigger": "FallBackRealName"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "BlockType": "text",
+                                                                "RenderIf": "{NameConvention, Converter=StringEquals, Parameter=Full Name}",
+                                                                "HorizontalAlignment": "Left",
+                                                                "VerticalAlignment": "Center",
+                                                                "Source": "{Item.Driver.RealName, Converter=StringFormatReverse, Parameter={Item.Driver.RealName{{NameUpperString}}}}",
+                                                                "Height": "*",
+                                                                "Foreground": "FF0000",
+                                                                "FontSize": "{2ndDriverNameFontSize}",
+                                                                "FontName": "{F1-Bold}",
+                                                                "Triggers": [
+                                                                    {
+                                                                        "Trigger": "SwitchName"
+                                                                    },
+                                                                    {
+                                                                        "Trigger": "FallBackName"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "BlockType": "text",
+                                                        "Source": "{Item.FastestLapTime}",
+                                                        "FontSize": 40,
+                                                        "VerticalAlignment": "Bottom",
+                                                        "FontName": "{F1-Bold}",
+                                                        "Foreground": "000000"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "BlockType": "image",
+                                                "HorizontalAlignment": "Right",
+                                                "VerticalAlignment": "Center",
+                                                "Height": 300,
+                                                "Width": 300,
+                                                "MarginRight": -50,
+                                                "ImageOptions": {
+                                                    "Path": "{Item.Team.LightLogotypePath}"
+                                                },
+                                                "Triggers": [
+                                                    {
+                                                        "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                                        "Property": "ImageOptions.Path",
+                                                        "Value": "{Item.{{{Type}}}.LiveryPath}"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "BlockType": "itemstack",
+                        "Width": 551,
+                        "Height": 331,
+                        "Background": "FECB00",
+                        "Orientation": "Vertical",
+                        "ItemStackOptions": {
+                            "ItemSource": "{Session.Drivers}",
+                            "OrderBy": "FastestLapTime",
+                            "Limit": 1,
+                            "IndexStart": 2,
+                            "ItemTemplate": {
+                                "BlockType": "stack",
+                                "BackgroundImage": "bg/fl.bg.2.png",
+                                "Width": 551,
+                                "Height": 331,
+                                "Items": [
+                                    {
+                                        "BlockType": "dock",
+                                        "BackgroundImage": "bg/fl.border.png",
+                                        "Width": 551,
+                                        "Height": 331,
+                                        "ColorizeBackground": {
+                                            "Color": "A04814"
+                                        },
+                                        "Items": [
+                                            {
+                                                "BlockType": "dock",
+                                                "Orientation": "Vertical",
+                                                "Width": "*",
+                                                "Spacing": 20,
+                                                "Margin": "25,25,0,10",
+                                                "Items": [
+                                                    {
+                                                        "BlockType": "stack",
+                                                        "Height": "*",
+                                                        "Items": [
+                                                            {
+                                                                "BlockType": "text",
+                                                                "Source": "[3]",
+                                                                "FontSize": 180,
+                                                                "FontName": "{F1-Bold}",
+                                                                "Foreground": "161425"
+                                                            },
+                                                            {
+                                                                "BlockType": "text",
+                                                                "Source": "[RD]",
+                                                                "FontSize": 60,
+                                                                "VerticalAlignment": "Top",
+                                                                "FontName": "{F1-Bold}",
+                                                                "Foreground": "161425"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "BlockType": "stack",
+                                                        "Orientation": "Vertical",
+                                                        "Height": "*",
+                                                        "Items": [
+                                                            {
+                                                                "BlockType": "text",
+                                                                "HorizontalAlignment": "Left",
+                                                                "VerticalAlignment": "Center",
+                                                                "Source": "{Item.Driver.{{NameConvention}}, Converter=StringFormatReverse, Parameter={Item.Driver.{{NameConvention}}{{NameUpperString}}}}",
+                                                                "Height": "*",
+                                                                "Foreground": "FF0000",
+                                                                "FontSize": "{3rdDriverNameFontSize}",
+                                                                "FontName": "{F1-Bold}",
+                                                                "Triggers": [
+                                                                    {
+                                                                        "Trigger": "SwitchRealName"
+                                                                    },
+                                                                    {
+                                                                        "Trigger": "FallBackRealName"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "BlockType": "text",
+                                                                "RenderIf": "{NameConvention, Converter=StringEquals, Parameter=Full Name}",
+                                                                "HorizontalAlignment": "Left",
+                                                                "VerticalAlignment": "Center",
+                                                                "Source": "{Item.Driver.RealName, Converter=StringFormatReverse, Parameter={Item.Driver.RealName{{NameUpperString}}}}",
+                                                                "Height": "*",
+                                                                "Foreground": "FF0000",
+                                                                "FontSize": "{3rdDriverNameFontSize}",
+                                                                "FontName": "{F1-Bold}",
+                                                                "Triggers": [
+                                                                    {
+                                                                        "Trigger": "SwitchName"
+                                                                    },
+                                                                    {
+                                                                        "Trigger": "FallBackName"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "BlockType": "text",
+                                                        "Source": "{Item.FastestLapTime}",
+                                                        "FontSize": 40,
+                                                        "VerticalAlignment": "Bottom",
+                                                        "FontName": "{F1-Bold}",
+                                                        "Foreground": "000000"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "BlockType": "image",
+                                                "HorizontalAlignment": "Right",
+                                                "VerticalAlignment": "Center",
+                                                "Height": 300,
+                                                "Width": 300,
+                                                "MarginRight": -50,
+                                                "ImageOptions": {
+                                                    "Path": "{Item.Team.LightLogotypePath}"
+                                                },
+                                                "Triggers": [
+                                                    {
+                                                        "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                                        "Property": "ImageOptions.Path",
+                                                        "Value": "{Item.{{{Type}}}.LiveryPath}"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

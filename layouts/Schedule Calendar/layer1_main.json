@@ -1,0 +1,319 @@
+{
+    "BlockRoot": {
+        "BlockType": "stack",
+        "Margin": "50",
+        "Orientation": "Vertical",
+        "Items": [
+            {
+                "BlockType": "stack",
+                "Orientation": "Vertical",
+                "Width": "*",
+                "Items": [
+                    {
+                        "BlockType": "dock",
+                        "Width": "*",
+                        "Items": [
+                            {
+                                "BlockType": "image",
+                                "Height": 80,
+                                "VerticalAlignment": "Center",
+                                "ImageOptions": {
+                                    "Path": "{Season.LeagueInfo.LeagueLogo}"
+                                }
+                            },
+                            {
+                                "BlockType": "text",
+                                "VerticalAlignment": "Center",
+                                "MarginLeft": 20,
+                                "Height": "*",
+                                "Source": "{Season.LeagueInfo.LeagueName, Converter=StringToUpperString} {Season.Name, Converter=StringToUpperString}",
+                                "Style": "HeaderTopLineStyle"
+                            },
+                            {
+                                "BlockType": "shape",
+                                "Height": 5,
+                                "WidthPercent": 100,
+                                "Margin": "40,0",
+                                "VerticalAlignment": "Center",
+                                "ShapeOptions": {
+                                    "Fill": "FFFFFF"
+                                }
+                            },
+                            {
+                                "BlockType": "image",
+                                "HorizontalAlignment": "Right",
+                                "VerticalAlignment": "Center",
+                                "Height": 140,
+                                "Colorize": {
+                                    "Color": "FFFFFF"
+                                },
+                                "ImageOptions": {
+                                    "Path": "{Season.Championship.LogotypePath}"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "stack",
+                        "Width": "*",
+                        "Items": [
+                            {
+                                "BlockType": "stack",
+                                "Orientation": "Vertical",
+                                "Spacing": -10,
+                                "StretchWidth": true,
+                                "Items": [
+                                    {
+                                        "BlockType": "text",
+                                        "Source": "[CALENDAR]",
+                                        "Style": "HeaderBottomLineStyle"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "BlockType": "stack",
+                "Width": "*",
+                "Margin": "0,110,0,-110",
+                "Items": [
+                    {
+                        "BlockType": "component",
+                        "Component": "SeasonProgress"
+                    }
+                ]
+            },
+            {
+                "BlockType": "stack",
+                "Items": [
+                    {
+                        "BlockType": "table",
+                        "HorizontalAlignment": "Center",
+                        "TableOptions": {
+                            "ItemsSource": "{Events.Events}",
+                            "RowSpacing": 25,
+                            "RowHeight": 132,
+                            "HeaderTemplate": {
+                                "BlockType": "text",
+                                "MarginBottom": 60,
+                                "Style": "CalendarHeader"
+                            },
+                            "Columns": [
+                                {
+                                    "Header": "",
+                                    "Template": {
+                                        "BlockType": "image",
+                                        "Width": 30,
+                                        "Height": 132,
+                                        "Colorize": {
+                                            "IsEnabled": true,
+                                            "Color": "FFFFFF"
+                                        },
+                                        "Source": "cell.left.png"
+                                    }
+                                },
+                                {
+                                    "Header": "",
+                                    "Template": {
+                                        "BlockType": "component",
+                                        "Component": "Cell",
+                                        "PaddingRight": 30,
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "source": "R{Item.Position, Converter=NumberSubtract, Parameter={Season.SeasonOverallNumberEvents, Converter=NumberSubtract, Parameter={Season.SeasonOverallNumberEventsExcludingNonChampionship}}}",
+                                                "align": "Center",
+                                                "font": "{Bold}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.IsChampionshipStatus, Converter=BoolReverse}",
+                                                "ComponentVar": "source",
+                                                "Value": "[PRE]"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "Header": "",
+                                    "Template": {
+                                        "BlockType": "stack",
+                                        "HorizontalAlignment": "Left",
+                                        "VerticalAlignment": "Center",
+                                        "Background": "FFFFFF",
+                                        "Items": [
+                                            {
+                                                "BlockType": "image",
+                                                "Height": 200,
+                                                "Width": 210,
+                                                "VerticalAlignment": "Center",
+                                                "ImageOptions": {
+                                                    "Path": "{Item.Track.Nation.LogotypePath}",
+                                                    "VerticalAlignment": "Center"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "Header": "",
+                                    "Template": {
+                                        "BlockType": "stack",
+                                        "Orientation": "Vertical",
+                                        "Spacing": -40,
+                                        "Items": [
+                                            {
+                                                "BlockType": "component",
+                                                "Component": "Cell",
+                                                "Padding": "20,0",
+                                                "ComponentOptions": {
+                                                    "Vars": {
+                                                        "source": "{Item.Track.CircuitName, Converter=StringToUpperString}",
+                                                        "align": "Left",
+                                                        "font": "{Bold}"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "BlockType": "component",
+                                                "Component": "Cell",
+                                                "Padding": "20,0",
+                                                "ComponentOptions": {
+                                                    "Vars": {
+                                                        "source": "{Item.Description, Converter=StringToUpperString}",
+                                                        "align": "Left",
+                                                        "font": "{Bold}"
+                                                    }
+                                                },
+                                                "Triggers": [
+                                                    {
+                                                        "Condition": "{Item.Description, Converter=EmptyObjectToFalse}",
+                                                        "Property": "FontSize",
+                                                        "Value": 40
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "Header": "[DATE]",
+                                    "Template": {
+                                        "BlockType": "component",
+                                        "Component": "Cell",
+                                        "Padding": "50,0",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "source": "{Item.DateLocal, Converter=DateCustomFormat, Parameter=dd}/{Item.DateLocal, Converter=DateCustomFormat, Parameter=MM}",
+                                                "align": "Center",
+                                                "font": "{Bold}"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "Header": "[TIME]",
+                                    "Template": {
+                                        "BlockType": "component",
+                                        "Component": "Cell",
+                                        "Padding": "50,0",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "source": "{Item.DateLocal, Converter=DateToTime}",
+                                                "align": "Center",
+                                                "font": "{Bold}"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "Header": "[UTC]",
+                                    "Template": {
+                                        "BlockType": "component",
+                                        "Component": "Cell",
+                                        "Padding": "50,0",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "source": "UTC{Item.DateLocal, Converter=DateCustomFormat, Parameter=zz}",
+                                                "align": "Center",
+                                                "font": "{Bold}"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "Header": "[LENGTH]",
+                                    "Template": {
+                                        "RenderIf": "{CalendarCircuitInfo}",
+                                        "BlockType": "component",
+                                        "Component": "Cell",
+                                        "Padding": "50,0",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "source": "{Item.Track.Length, Converter=NumberGroupWithSeparator, Parameter=.} KM",
+                                                "align": "Center",
+                                                "font": "{Bold}"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "Header": "[TURNS]",
+                                    "Template": {
+                                        "RenderIf": "{CalendarCircuitInfo}",
+                                        "BlockType": "component",
+                                        "Component": "Cell",
+                                        "Padding": "50,0",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "source": "{Item.Track.NumberTurns}",
+                                                "align": "Center",
+                                                "font": "{Bold}"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "Header": "[LAP RECORD]",
+                                    "Template": {
+                                        "RenderIf": "{CalendarCircuitInfo}",
+                                        "BlockType": "stack",
+                                        "Items": [
+                                            {
+                                                "BlockType": "component",
+                                                "Component": "Cell",
+                                                "Padding": "50,0",
+                                                "ComponentOptions": {
+                                                    "Vars": {
+                                                        "source": "{Item.Track.RaceLapRecordDriverName, Converter=StringFormatReverse, Parameter={Item.Track.RaceLapRecordDriverName{{NameUpperString}}}}  {Item.Track.RaceLapRecordTime}",
+                                                        "align": "Right",
+                                                        "font": "{Bold}"
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "Header": "",
+                                    "Template": {
+                                        "BlockType": "image",
+                                        "Width": 30,
+                                        "Height": 132,
+                                        "Colorize": {
+                                            "IsEnabled": true,
+                                            "Color": "FFFFFF"
+                                        },
+                                        "Source": "cell.right.png"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "BlockRoot": {
+        "BlockType": "stack",
+        "RenderIf": "{ThemeBackground}",
+        "Items": [
+            {
+                "BlockType": "image",
+                "Height": "*",
+                "ImageOptions": {
+                    "Path": "bg/bg.plain.png"
+                }
+            }
+        ]
+    }
+}

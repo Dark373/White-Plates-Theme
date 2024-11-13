@@ -1,0 +1,205 @@
+{
+    "BlockRoot": {
+        "BlockType": "stack",
+        "Orientation": "Vertical",
+        "Margin": "50",
+        "Items": [
+            {
+                "BlockType": "dock",
+                "MarginBottom": 25,
+                "HorizontalAlignment": "Center",
+                "Orientation": "Vertical",
+                "Items": [
+                    {
+                        "BlockType": "dock",
+                        "RenderIf": "{Season.LeagueInfo.LeagueLogo, Converter=EmptyObjectToFalse}",
+                        "HorizontalAlignment": "Center",
+                        "Items": [
+                            {
+                                "BlockType": "stack",
+                                "Spacing": 80,
+                                "HorizontalAlignment": "Center",
+                                "Items": [
+                                    {
+                                        "BlockType": "image",
+                                        "Height": 140,
+                                        "VerticalAlignment": "Center",
+                                        "HorizontalAlignment": "Center",
+                                        "ImageOptions": {
+                                            "Path": "{Season.LeagueInfo.LeagueLogo}"
+                                        }
+                                    },
+                                    {
+                                        "BlockType": "shape",
+                                        "Height": 100,
+                                        "Width": 4,
+                                        "VerticalAlignment": "Center",
+                                        "ShapeOptions": {
+                                            "Fill": "FFFFFF"
+                                        }
+                                    },
+                                    {
+                                        "BlockType": "image",
+                                        "VerticalAlignment": "Center",
+                                        "Colorize": {
+                                            "Color": "FFFFFF"
+                                        },
+                                        "Height": 200,
+                                        "ImageOptions": {
+                                            "Path": "{Season.Championship.LogotypePath}"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "text",
+                        "HorizontalAlignment": "Center",
+                        "Source": "{Season.Name, Converter=StringToUpperString} [ENTRY LIST]",
+                        "FontSize": 100,
+                        "Style": "CalendarHeader"
+                    }
+                ]
+            },
+            {
+                "BlockType": "stack",
+                "Width": "*",
+                "MarginBottom": 25,
+                "Items": [
+                    {
+                        "BlockType": "component",
+                        "Component": "SeasonProgress"
+                    }
+                ]
+            },
+            {
+                "BlockType": "stack",
+                "Orientation": "Horizontal",
+                "Items": [
+                    {
+                        "BlockType": "itemstack",
+                        "HorizontalAlignment": "Center",
+                        "Orientation": "Vertical",
+                        "ItemStackOptions": {
+                            "ItemSource": "{Lineups.Lineups}",
+                            "ItemTemplate": {
+                                "BlockType": "stack",
+                                "Height": 132,
+                                "Width": "*",
+                                "HorizontalAlignment": "Center",
+                                "Items": [
+                                    {
+                                        "BlockType": "dock",
+                                        "Background": "{Item.Team.Color}",
+                                        "Orientation": "Vertical",
+                                        "VerticalAlignment": "Center",
+                                        "HorizontalAlignment": "Center",
+                                        "Items": [
+                                            {
+                                                "BlockType": "text",
+                                                "Source": "{Item.Driver.RaceNumber}",
+                                                "HorizontalAlignment": "Center",
+                                                "VerticalAlignment": "Center",
+                                                "FontName": "{Regular}",
+                                                "FontSize": 60,
+                                                "Width": 300,
+                                                "Foreground": "000000",
+                                                "Triggers": [
+                                                    {
+                                                        "Condition": "{Item.Driver.RaceNumber, Converter=EmptyObjectToTrue}",
+                                                        "Property": "Source",
+                                                        "Value": "?"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "BlockType": "dock",
+                                        "PaddingLeft": 20,
+                                        "VerticalAlignment": "Center",
+                                        "Height": "*",
+                                        "MinWidth": 1340,
+                                        "Background": "FFFFFF",
+                                        "Orientation": "Vertical",
+                                        "Items": [
+                                            {
+                                                "BlockType": "text",
+                                                "HorizontalAlignment": "Left",
+                                                "VerticalAlignment": "Center",
+                                                "Source": "{Item.Driver.{{NameConvention}}, Converter=StringFormatReverse, Parameter={Item.Driver.{{NameConvention}}{{NameUpperString}}}}",
+                                                "Height": "*",
+                                                "Foreground": "{LightFontColour}",
+                                                "FontSize": 70,
+                                                "Triggers": [
+                                                    {
+                                                        "Condition": "{NameConvention, Converter=StringEquals, Parameter=Full Name}",
+                                                        "Property": "Source",
+                                                        "Value": "{Item.Driver.Name, Converter=StringFormatReverse, Parameter={Item.Driver.Name{{NameUpperString}}}} {Item.Driver.RealName, Converter=StringFormatReverse, Parameter={Item.Driver.RealName{{NameUpperString}}}}"
+                                                    },
+                                                    {
+                                                        "Condition": "{NameSwitch}",
+                                                        "ConditionAnd": "{NameConvention, Converter=StringEquals, Parameter=Full Name}",
+                                                        "Property": "Source",
+                                                        "Value": "{Item.Driver.RealName, Converter=StringFormatReverse, Parameter={Item.Driver.RealName{{NameUpperString}}}} {Item.Driver.Name, Converter=StringFormatReverse, Parameter={Item.Driver.Name{{NameUpperString}}}}"
+                                                    },
+                                                    {
+                                                        "Condition": "{Item.Driver.Name, Converter=EmptyObjectToTrue}",
+                                                        "Property": "Source",
+                                                        "Value": "?"
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.SeatPosition, Converter=NumberIsEven}",
+                                                "Property": "Background",
+                                                "Value": "EFEFEF"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "BlockType": "dock",
+                                        "Orientation": "Vertical",
+                                        "HorizontalAlignment": "Right",
+                                        "Width": "*",
+                                        "Items": [
+                                            {
+                                                "PaddingRight": 20,
+                                                "BlockType": "component",
+                                                "Component": "Cell",
+                                                "ComponentOptions": {
+                                                    "Vars": {
+                                                        "source": "{Item.{{{Type}}}.FullName}",
+                                                        "align": "Right",
+                                                        "font": "{Regular}"
+                                                    }
+                                                },
+                                                "Triggers": [
+                                                    {
+                                                        "Condition": "{Item.SeatPosition, Converter=NumberIsEven}",
+                                                        "Property": "Background",
+                                                        "Value": "EFEFEF"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "Triggers": [
+                                    {
+                                        "Condition": "{Item.IsNextTeam}",
+                                        "Property": "MarginTop",
+                                        "Value": 25
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

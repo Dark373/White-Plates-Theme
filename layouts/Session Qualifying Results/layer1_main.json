@@ -1,0 +1,387 @@
+{
+    "BlockRoot": {
+        "BlockType": "stack",
+        "Orientation": "Vertical",
+        "Margin": "50",
+        "Items": [
+            {
+                "BlockType": "component",
+                "Component": "Header",
+                "ComponentOptions": {
+                    "Vars": {
+                        "TopLineSource": "[{Session.Track.CircuitName, Converter=StringToUpperString}] [GRAND PRIX]",
+                        "BottomLineSource": "[{Session.SessionType, Converter=StringToUpperString} RESULTS]",
+                        "FlagPath": "{Session.Track.Nation.LogotypePath}",
+                        "CircuitPath": "track maps/{Session.Track.CircuitName}.png",
+                        "CircuitColour": "{{Session.Track.Nation.Code}HeaderCircuitColour}"
+                    }
+                }
+            },
+            {
+                "BlockType": "stack",
+                "Width": "*",
+                "Margin": "0,110,0,-110",
+                "Items": [
+                    {
+                        "BlockType": "component",
+                        "Component": "SeasonProgress"
+                    }
+                ]
+            },
+            {
+                "BlockType": "table",
+                "TableOptions": {
+                    "ItemsSource": "{Session.Drivers}",
+                    "RowSpacing": 25,
+                    "RowHeight": 132,
+                    "HeaderTemplate": {
+                        "BlockType": "text",
+                        "MarginBottom": 60,
+                        "Style": "CalendarHeader"
+                    },
+                    "Columns": [
+                        {
+                            "Header": "",
+                            "Template": {
+                                "BlockType": "image",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.left.png"
+                            }
+                        },
+                        {
+                            "Header": "",
+                            "Template": {
+                                "PaddingRight": 40,
+                                "BlockType": "component",
+                                "Component": "Cell",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Item.Position}",
+                                        "align": "Left",
+                                        "font": "{Bold}"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "Header": "",
+                            "Template": {
+                                "BlockType": "stack",
+                                "Background": "FFFFFF",
+                                "PaddingRight": 30,
+                                "Items": [
+                                    {
+                                        "BlockType": "shape",
+                                        "Height": 80,
+                                        "Width": 18,
+                                        "VerticalAlignment": "Center",
+                                        "ShapeOptions": {
+                                            "Fill": "{Item.Team.Color}"
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                                                "Property": "ShapeOptions.Fill",
+                                                "Value": "{ReserveColour}"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "Header": "",
+                            "Template": {
+                                "PaddingRight": 300,
+                                "BlockType": "component",
+                                "Component": "DriverLine",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "align": "Left",
+                                        "fontsize": "60"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "Header": "",
+                            "Template": {
+                                "PaddingRight": 600,
+                                "BlockType": "component",
+                                "Component": "Cell",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Item.{{{Type}}}.Name, Converter=StringToUpperString}",
+                                        "align": "Left",
+                                        "font": "{Regular}"
+                                    }
+                                },
+                                "Triggers": [
+                                    {
+                                        "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                                        "ComponentVar": "source",
+                                        "Value": "[RESERVE]"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "Header": "[TIME]",
+                            "Template": {
+                                "BlockType": "dock",
+                                "Background": "FFFFFF",
+                                "Items": [
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "Cell",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "source": "{Item.AbsoluteTime}",
+                                                "align": "Right",
+                                                "font": "{Bold}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.AbsoluteTime, Converter=EmptyObjectToTrue}",
+                                                "ComponentVar": "source",
+                                                "Value": "[NO TIME]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "Header": "",
+                            "Template": {
+                                "BlockType": "image",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.Right.png"
+                            }
+                        },
+                        {
+                            "Header": "[GAP]",
+                            "Template": {
+                                "MarginLeft": 25,
+                                "BlockType": "component",
+                                "Component": "SingleCell",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Item.Time}",
+                                        "font": "{FontNameDefault}",
+                                        "FG": "{BlackFontColour}"
+                                    }
+                                },
+                                "Triggers": [
+                                    {
+                                        "Condition": "{Item.Position, Converter=NumberEquals, Parameter=1}",
+                                        "ComponentVar": "opacity",
+                                        "Value": 0
+                                    },
+                                    {
+                                        "Condition": "{Item.Time, Converter=EmptyObjectToTrue}",
+                                        "ComponentVar": "source",
+                                        "Value": "-:---"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "Header": "",
+                            "Template": {
+                                "MarginLeft": 25,
+                                "RenderIf": "{Session.IsLiveData}",
+                                "BlockType": "image",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.Left.png"
+                            }
+                        },
+                        {
+                            "Header": "",
+                            "Template": {
+                                "RenderIf": "{Session.IsLiveData}",
+                                "BlockType": "dock",
+                                "Background": "FFFFFF",
+                                "Items": [
+                                    {
+                                        "BlockType": "image",
+                                        "Height": 120,
+                                        "VerticalAlignment": "Center",
+                                        "HorizontalAlignment": "Center",
+                                        "ImageOptions": {
+                                            "Path": "tyres/tyres_{Item.FastestLapTyres}"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "Header": "",
+                            "Template": {
+                                "BlockType": "image",
+                                "RenderIf": "{Session.IsLiveData}",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.Right.png"
+                            }
+                        },
+                        {
+                            "Header": "[S1]",
+                            "Template": {
+                                "MarginLeft": 25,
+                                "RenderIf": "{Session.IsLiveData}",
+                                "BlockType": "component",
+                                "Component": "SingleCell",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Item.FastestLapSector1}",
+                                        "font": "{FontNameDefault}",
+                                        "FG": "{BlackFontColour}"
+                                    }
+                                },
+                                "Triggers": [
+                                    {
+                                        "Condition": "{Item.IsOverallFastestSector2}",
+                                        "ComponentVar": "FG",
+                                        "Value": "{SessionFastestLapFontColour}"
+                                    },
+                                    {
+                                        "Condition": "{Item.FastestLapSector1, Converter=EmptyObjectToTrue}",
+                                        "ComponentVar": "source",
+                                        "Value": "--:---"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "Header": "[S2]",
+                            "Template": {
+                                "MarginLeft": 25,
+                                "RenderIf": "{Session.IsLiveData}",
+                                "BlockType": "component",
+                                "Component": "SingleCell",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Item.FastestLapSector2}",
+                                        "font": "{FontNameDefault}",
+                                        "FG": "{BlackFontColour}"
+                                    }
+                                },
+                                "Triggers": [
+                                    {
+                                        "Condition": "{Item.IsOverallFastestSector2}",
+                                        "ComponentVar": "FG",
+                                        "Value": "{SessionFastestLapFontColour}"
+                                    },
+                                    {
+                                        "Condition": "{Item.FastestLapSector2, Converter=EmptyObjectToTrue}",
+                                        "ComponentVar": "source",
+                                        "Value": "--:---"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "Header": "[S3]",
+                            "Template": {
+                                "MarginLeft": 25,
+                                "RenderIf": "{Session.IsLiveData}",
+                                "BlockType": "component",
+                                "Component": "SingleCell",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Item.FastestLapSector3}",
+                                        "font": "{FontNameDefault}",
+                                        "FG": "{BlackFontColour}"
+                                    }
+                                },
+                                "Triggers": [
+                                    {
+                                        "Condition": "{Item.IsOverallFastestSector3}",
+                                        "ComponentVar": "FG",
+                                        "Value": "{SessionFastestLapFontColour}"
+                                    },
+                                    {
+                                        "Condition": "{Item.FastestLapSector3, Converter=EmptyObjectToTrue}",
+                                        "ComponentVar": "source",
+                                        "Value": "--:---"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "Header": "[LAPS]",
+                            "Template": {
+                                "MarginLeft": 25,
+                                "RenderIf": "{Session.IsLiveData}",
+                                "BlockType": "component",
+                                "Component": "SingleCell",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Item.LapsCount}",
+                                        "font": "{FontNameDefault}",
+                                        "FG": "{BlackFontColour}"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "Header": "[KM/H]",
+                            "Template": {
+                                "MarginLeft": 25,
+                                "RenderIf": "{Session.IsLiveData}",
+                                "BlockType": "component",
+                                "Component": "SingleCell",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Item.MaxSpeed}",
+                                        "font": "{FontNameDefault}",
+                                        "FG": "{BlackFontColour}"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "Header": "[PTS]",
+                            "Template": {
+                                "MarginLeft": 25,
+                                "BlockType": "component",
+                                "Component": "SingleCell",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Item.DriverPoints.StringValue}",
+                                        "font": "{FontNameDefault}",
+                                        "FG": "{BlackFontColour}"
+                                    }
+                                },
+                                "Triggers": [
+                                    {
+                                        "Condition": "{Item.DriverPoints.StringValue, Converter=EmptyObjectToTrue}",
+                                        "ComponentVar": "source",
+                                        "Value": "0"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

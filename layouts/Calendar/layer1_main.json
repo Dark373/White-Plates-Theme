@@ -1,0 +1,206 @@
+{
+    "BlockRoot": {
+        "BlockType": "stack",
+        "Margin": "80",
+        "Spacing": 100,
+        "Items": [
+            {
+                "BlockType": "component",
+                "Component": "HeaderBlockCalendar"
+            },
+            {
+                "BlockType": "stack",
+                "Orientation": "Vertical",
+                "VerticalAlignment": "Center",
+                "Spacing": 15,
+                "Items": [
+                    {
+                        "BlockType": "itemstack",
+                        "Spacing": 15,
+                        "Orientation": "Horizontal",
+                        "ItemStackOptions": {
+                            "ItemSource": "{Events.Events}",
+                            "FilterMember": "IsChampionshipStatus",
+                            "FilterMemberValue": "True",
+                            "Limit": "{CalendarCol}",
+                            "ItemTemplate": {
+                                "BlockType": "component",
+                                "Component": "EventCell"
+                            }
+                        }
+                    },
+                    {
+                        "BlockType": "itemstack",
+                        "Spacing": 15,
+                        "RenderIf": "{CalendarRow, Converter=NumberGreater, Parameter=1}",
+                        "Orientation": "Horizontal",
+                        "ItemStackOptions": {
+                            "ItemSource": "{Events.Events}",
+                            "FilterMember": "IsChampionshipStatus",
+                            "FilterMemberValue": "True",
+                            "Limit": "{CalendarCol}",
+                            "IndexStart": "{CalendarCol}",
+                            "ItemTemplate": {
+                                "BlockType": "component",
+                                "Component": "EventCell"
+                            }
+                        }
+                    },
+                    {
+                        "BlockType": "itemstack",
+                        "Spacing": 15,
+                        "RenderIf": "{CalendarRow, Converter=NumberGreater, Parameter=2}",
+                        "Orientation": "Horizontal",
+                        "ItemStackOptions": {
+                            "ItemSource": "{Events.Events}",
+                            "FilterMember": "IsChampionshipStatus",
+                            "FilterMemberValue": "True",
+                            "Limit": "{CalendarCol}",
+                            "IndexStart": "{CalendarCol, Converter=NumberMultiply, Parameter=2}",
+                            "ItemTemplate": {
+                                "BlockType": "component",
+                                "Component": "EventCell"
+                            }
+                        }
+                    },
+                    {
+                        "BlockType": "itemstack",
+                        "Spacing": 15,
+                        "RenderIf": "{CalendarRow, Converter=NumberGreater, Parameter=3}",
+                        "Orientation": "Horizontal",
+                        "ItemStackOptions": {
+                            "ItemSource": "{Events.Events}",
+                            "FilterMember": "IsChampionshipStatus",
+                            "FilterMemberValue": "True",
+                            "Limit": "{CalendarCol}",
+                            "IndexStart": "{CalendarCol, Converter=NumberMultiply, Parameter=3}",
+                            "ItemTemplate": {
+                                "BlockType": "component",
+                                "Component": "EventCell"
+                            }
+                        }
+                    },
+                    {
+                        "BlockType": "itemstack",
+                        "Spacing": 15,
+                        "RenderIf": "{CalendarRow, Converter=NumberGreater, Parameter=4}",
+                        "Orientation": "Horizontal",
+                        "ItemStackOptions": {
+                            "ItemSource": "{Events.Events}",
+                            "FilterMember": "IsChampionshipStatus",
+                            "FilterMemberValue": "True",
+                            "Limit": "{CalendarCol}",
+                            "IndexStart": "{CalendarCol, Converter=NumberMultiply, Parameter=4}",
+                            "ItemTemplate": {
+                                "BlockType": "component",
+                                "Component": "EventCell"
+                            }
+                        }
+                    },
+                    {
+                        "BlockType": "itemstack",
+                        "Spacing": 15,
+                        "RenderIf": "{CalendarRow, Converter=NumberGreater, Parameter=5}",
+                        "Orientation": "Horizontal",
+                        "ItemStackOptions": {
+                            "ItemSource": "{Events.Events}",
+                            "FilterMember": "IsChampionshipStatus",
+                            "FilterMemberValue": "True",
+                            "Limit": "{CalendarCol}",
+                            "IndexStart": "{CalendarCol, Converter=NumberMultiply, Parameter=5}",
+                            "ItemTemplate": {
+                                "BlockType": "component",
+                                "Component": "EventCell"
+                            }
+                        }
+                    },
+                    {
+                        "BlockType": "itemstack",
+                        "Spacing": 15,
+                        "RenderIf": "{CalendarRow, Converter=NumberGreater, Parameter=6}",
+                        "Orientation": "Horizontal",
+                        "ItemStackOptions": {
+                            "ItemSource": "{Events.Events}",
+                            "FilterMember": "IsChampionshipStatus",
+                            "FilterMemberValue": "True",
+                            "Limit": "{CalendarCol}",
+                            "IndexStart": "{CalendarCol, Converter=NumberMultiply, Parameter=6}",
+                            "ItemTemplate": {
+                                "BlockType": "component",
+                                "Component": "EventCell"
+                            }
+                        }
+                    },
+                    {
+                        "BlockType": "itemstack",
+                        "Spacing": 15,
+                        "RenderIf": "{CalendarRow, Converter=NumberGreater, Parameter=7}",
+                        "Orientation": "Horizontal",
+                        "ItemStackOptions": {
+                            "ItemSource": "{Events.Events}",
+                            "FilterMember": "IsChampionshipStatus",
+                            "FilterMemberValue": "True",
+                            "Limit": "{CalendarCol}",
+                            "IndexStart": "{CalendarCol, Converter=NumberMultiply, Parameter=7}",
+                            "ItemTemplate": {
+                                "BlockType": "component",
+                                "Component": "EventCell"
+                            }
+                        }
+                    },
+                    {
+                        "BlockType": "itemstack",
+                        "Spacing": 15,
+                        "RenderIf": "{CalendarRow, Converter=NumberGreater, Parameter=8}",
+                        "Orientation": "Horizontal",
+                        "ItemStackOptions": {
+                            "ItemSource": "{Events.Events}",
+                            "FilterMember": "IsChampionshipStatus",
+                            "FilterMemberValue": "True",
+                            "Limit": "{CalendarCol}",
+                            "IndexStart": "{CalendarCol, Converter=NumberMultiply, Parameter=8}",
+                            "ItemTemplate": {
+                                "BlockType": "component",
+                                "Component": "EventCell"
+                            }
+                        }
+                    },
+                    {
+                        "BlockType": "itemstack",
+                        "Spacing": 15,
+                        "RenderIf": "{CalendarRow, Converter=NumberGreater, Parameter=9}",
+                        "Orientation": "Horizontal",
+                        "ItemStackOptions": {
+                            "ItemSource": "{Events.Events}",
+                            "FilterMember": "IsChampionshipStatus",
+                            "FilterMemberValue": "True",
+                            "Limit": "{CalendarCol}",
+                            "IndexStart": "{CalendarCol, Converter=NumberMultiply, Parameter=9}",
+                            "ItemTemplate": {
+                                "BlockType": "component",
+                                "Component": "EventCell"
+                            }
+                        }
+                    },
+                    {
+                        "BlockType": "itemstack",
+                        "Spacing": 15,
+                        "RenderIf": "{CalendarRow, Converter=NumberGreater, Parameter=10}",
+                        "Orientation": "Horizontal",
+                        "ItemStackOptions": {
+                            "ItemSource": "{Events.Events}",
+                            "FilterMember": "IsChampionshipStatus",
+                            "FilterMemberValue": "True",
+                            "Limit": "{CalendarCol}",
+                            "IndexStart": "{CalendarCol, Converter=NumberMultiply, Parameter=10}",
+                            "ItemTemplate": {
+                                "BlockType": "component",
+                                "Component": "EventCell"
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

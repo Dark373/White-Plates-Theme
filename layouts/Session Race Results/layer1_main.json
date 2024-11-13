@@ -1,0 +1,856 @@
+{
+    "BlockRoot": {
+        "BlockType": "stack",
+        "Orientation": "Vertical",
+        "Margin": "50",
+        "Items": [
+            {
+                "BlockType": "component",
+                "Component": "Header",
+                "ComponentOptions": {
+                    "Vars": {
+                        "TopLineSource": "[{Session.Track.CircuitName, Converter=StringToUpperString}] [GRAND PRIX]",
+                        "BottomLineSource": "[{Session.RaceType, Converter=StringToUpperString} RESULTS]",
+                        "FlagPath": "{Session.Track.Nation.LogotypePath}",
+                        "CircuitPath": "track maps/{Session.Track.CircuitName}.png",
+                        "CircuitColour": "{{Session.Track.Nation.Code}HeaderCircuitColour}"
+                    }
+                }
+            },
+            {
+                "BlockType": "stack",
+                "Width": "*",
+                "Margin": "0,110,0,-110",
+                "Items": [
+                    {
+                        "BlockType": "component",
+                        "Component": "SeasonProgress"
+                    }
+                ]
+            },
+            {
+                "BlockType": "table",
+                "TableOptions": {
+                    "ItemsSource": "{Session.Drivers}",
+                    "RowSpacing": 25,
+                    "RowHeight": 132,
+                    "HeaderTemplate": {
+                        "BlockType": "text",
+                        "MarginBottom": 60,
+                        "Style": "CalendarHeader"
+                    },
+                    "Columns": [
+                        {
+                            "Header": "",
+                            "Template": {
+                                "BlockType": "image",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.left.png"
+                            }
+                        },
+                        {
+                            "Header": "",
+                            "Template": {
+                                "PaddingRight": 40,
+                                "BlockType": "component",
+                                "Component": "Cell",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Item.Position}",
+                                        "align": "Left",
+                                        "font": "{Bold}"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "Header": "",
+                            "Template": {
+                                "BlockType": "stack",
+                                "Background": "FFFFFF",
+                                "PaddingRight": 30,
+                                "Items": [
+                                    {
+                                        "BlockType": "shape",
+                                        "Height": 80,
+                                        "Width": 18,
+                                        "VerticalAlignment": "Center",
+                                        "ShapeOptions": {
+                                            "Fill": "{Item.Team.Color}"
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                                                "Property": "ShapeOptions.Fill",
+                                                "Value": "{ReserveColour}"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "Header": "",
+                            "Template": {
+                                "PaddingRight": 300,
+                                "BlockType": "component",
+                                "Component": "DriverLine",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "align": "Left",
+                                        "fontsize": "60"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "Header": "",
+                            "Template": {
+                                "PaddingRight": 600,
+                                "BlockType": "component",
+                                "Component": "Cell",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Item.{{{Type}}}.Name, Converter=StringToUpperString}",
+                                        "align": "Left",
+                                        "font": "{Regular}"
+                                    }
+                                },
+                                "Triggers": [
+                                    {
+                                        "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                                        "ComponentVar": "source",
+                                        "Value": "[RESERVE]"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "Header": "[TIME]",
+                            "Template": {
+                                "BlockType": "dock",
+                                "Background": "FFFFFF",
+                                "Items": [
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "Cell",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "source": "{Item.AbsoluteTime}",
+                                                "align": "Right",
+                                                "font": "{Bold}"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "Header": "[PEN.]",
+                            "Template": {
+                                "PaddingLeft": 40,
+                                "BlockType": "dock",
+                                "Background": "FFFFFF",
+                                "Items": [
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "Cell",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "source": "+{Item.PenaltyTimeTotal}s",
+                                                "align": "Center",
+                                                "font": "{Bold}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.PenaltyTimeTotal, Converter=NumberEquals, Parameter=0}",
+                                                "Property": "Opacity",
+                                                "Value": 0
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "Header": "",
+                            "Template": {
+                                "BlockType": "image",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.Right.png"
+                            }
+                        },
+                        {
+                            "Header": "[GAP]",
+                            "Template": {
+                                "MarginLeft": 25,
+                                "BlockType": "component",
+                                "Component": "SingleCell",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Item.Time}",
+                                        "font": "{FontNameDefault}",
+                                        "FG": "{BlackFontColour}"
+                                    }
+                                },
+                                "Triggers": [
+                                    {
+                                        "Condition": "{Item.Position, Converter=NumberEquals, Parameter=1}",
+                                        "ComponentVar": "opacity",
+                                        "Value": 0
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "Header": "",
+                            "Template": {
+                                "MarginLeft": 25,
+                                "BlockType": "image",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.Left.png"
+                            }
+                        },
+                        {
+                            "Header": "",
+                            "Template": {
+                                "BlockType": "component",
+                                "Component": "Cell",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Item.PositionJump}",
+                                        "align": "Center",
+                                        "font": "{Bold}"
+                                    }
+                                },
+                                "Triggers": [
+                                    {
+                                        "Condition": "{Item.PositionJump, Converter=NumberGreater, Parameter=0}",
+                                        "Setters": [
+                                            {
+                                                "Property": "Foreground",
+                                                "Value": "008000"
+                                            },
+                                            {
+                                                "ComponentVar": "source",
+                                                "Value": "+{Item.PositionJump}"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "Condition": "{Item.PositionJump, Converter=NumberLess, Parameter=0}",
+                                        "Property": "Foreground",
+                                        "Value": "FF0000"
+                                    },
+                                    {
+                                        "Condition": "{Item.PositionJump, Converter=NumberEquals, Parameter=0}",
+                                        "ComponentVar": "source",
+                                        "Value": "="
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "Header": "",
+                            "Template": {
+                                "BlockType": "image",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.Right.png"
+                            }
+                        },
+                        {
+                            "Header": "[LAPS]",
+                            "Template": {
+                                "MarginLeft": 25,
+                                "BlockType": "component",
+                                "Component": "SingleCell",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Item.LapsCount}",
+                                        "font": "{FontNameDefault}",
+                                        "FG": "{BlackFontColour}"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "Header": "[GRID]",
+                            "Template": {
+                                "MarginLeft": 25,
+                                "BlockType": "component",
+                                "Component": "SingleCell",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Item.GridPosition}",
+                                        "font": "{FontNameDefault}",
+                                        "FG": "{BlackFontColour}"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "Header": "[STOPS]",
+                            "Template": {
+                                "MarginLeft": 25,
+                                "RenderIf": "{Session.IsLiveData}",
+                                "BlockType": "component",
+                                "Component": "SingleCell",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Item.PitsCount}",
+                                        "font": "{FontNameDefault}",
+                                        "FG": "{BlackFontColour}"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "Header": "",
+                            "Template": {
+                                "RenderIf": "{Item.Stints, Converter=EmptyObjectToFalse}",
+                                "MarginLeft": 25,
+                                "BlockType": "image",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.Left.png"
+                            }
+                        },
+                        {
+                            "Header": "[STINTS]",
+                            "Template": {
+                                "BlockType": "itemstack",
+                                "Background": "FFFFFF",
+                                "ItemStackOptions": {
+                                    "ItemSource": "{Item.Stints}",
+                                    "ItemTemplate": {
+                                        "BlockType": "stack",
+                                        "VerticalAlignment": "Center",
+                                        "Spacing": 5,
+                                        "Items": [
+                                            {
+                                                "BlockType": "image",
+                                                "Height": 120,
+                                                "ImageOptions": {
+                                                    "Path": "tyres/tyres_{Item.Tyres}"
+                                                }
+                                            },
+                                            {
+                                                "BlockType": "text",
+                                                "PaddingRight": 20,
+                                                "Source": "{Item.StartLapNumber}",
+                                                "Style": "DefaultText",
+                                                "Foreground": "000000"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "Header": "",
+                            "Template": {
+                                "RenderIf": "{Item.Stints, Converter=EmptyObjectToFalse}",
+                                "BlockType": "image",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.Right.png"
+                            }
+                        },
+                        {
+                            "Header": "[L. LED]",
+                            "Template": {
+                                "MarginLeft": 25,
+                                "RenderIf": "{Session.IsLiveData}",
+                                "BlockType": "component",
+                                "Component": "SingleCell",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Item.LeadLaps}",
+                                        "font": "{FontNameDefault}",
+                                        "FG": "{BlackFontColour}"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "Header": "[KM/H]",
+                            "Template": {
+                                "MarginLeft": 25,
+                                "RenderIf": "{Session.IsLiveData}",
+                                "BlockType": "component",
+                                "Component": "SingleCell",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Item.MaxSpeed}",
+                                        "font": "{FontNameDefault}",
+                                        "FG": "{BlackFontColour}"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "Header": "[FASTEST]",
+                            "Template": {
+                                "MarginLeft": 25,
+                                "BlockType": "component",
+                                "Component": "SingleCell",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Item.FastestLapTime}",
+                                        "font": "{FontNameDefault}",
+                                        "FG": "{BlackFontColour}"
+                                    }
+                                },
+                                "Triggers": [
+                                    {
+                                        "Condition": "{Item.IsRaceFastestLap}",
+                                        "ComponentVar": "FG",
+                                        "Value": "{SessionFastestLapFontColour}"
+                                    },
+                                    {
+                                        "Condition": "{Item.FastestLapTime, Converter=EmptyObjectToTrue}",
+                                        "ComponentVar": "source",
+                                        "Value": "-:--.---"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "Header": "[ON]",
+                            "Template": {
+                                "MarginLeft": 25,
+                                "RenderIf": "{Session.IsLiveData}",
+                                "BlockType": "component",
+                                "Component": "SingleCell",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Item.FastestLapNumLap}",
+                                        "font": "{FontNameDefault}",
+                                        "FG": "{BlackFontColour}"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "Header": "[PTS]",
+                            "Template": {
+                                "MarginLeft": 25,
+                                "BlockType": "component",
+                                "Component": "SingleCell",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Item.DriverPoints.StringValue}",
+                                        "font": "{FontNameDefault}",
+                                        "FG": "{BlackFontColour}"
+                                    }
+                                },
+                                "Triggers": [
+                                    {
+                                        "Condition": "{Item.DriverPoints.StringValue, Converter=EmptyObjectToTrue}",
+                                        "ComponentVar": "source",
+                                        "Value": "0"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "BlockType": "stack",
+                "HorizontalAlignment": "Center",
+                "Spacing": 40,
+                "MarginTop": 40,
+                "Width": "*",
+                "Items": [
+                    {
+                        "BlockType": "stack",
+                        "Items": [
+                            {
+                                "BlockType": "image",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "IsEnabled": true,
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.left.png"
+                            },
+                            {
+                                "BlockType": "itemstack",
+                                "ItemStackOptions": {
+                                    "ItemSource": "{Session.Drivers}",
+                                    "FilterMember": "IsRaceFastestLap",
+                                    "FilterMemberValue": "True",
+                                    "ItemTemplate": {
+                                        "BlockType": "dock",
+                                        "Width": 800,
+                                        "Background": "FFFFFF",
+                                        "Height": 132,
+                                        "Items": [
+                                            {
+                                                "BlockType": "text",
+                                                "Style": "LightText",
+                                                "HorizontalAlignment": "Left",
+                                                "Source": "[FASTEST LAP]",
+                                                "Foreground": "{LightFontColour}"
+                                            },
+                                            {
+                                                "BlockType": "component",
+                                                "Component": "DriverLine",
+                                                "ComponentOptions": {
+                                                    "Vars": {
+                                                        "align": "Right",
+                                                        "fontsize": 60
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "BlockType": "image",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "IsEnabled": true,
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.right.png"
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "stack",
+                        "WidthPercent": 60,
+                        "Items": [
+                            {
+                                "BlockType": "image",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "IsEnabled": true,
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.left.png"
+                            },
+                            {
+                                "BlockType": "itemstack",
+                                "Width": "*",
+                                "ItemStackOptions": {
+                                    "ItemSource": "{Session.Drivers}",
+                                    "OrderBy": "GridPosition",
+                                    "Limit": 1,
+                                    "ItemTemplate": {
+                                        "BlockType": "dock",
+                                        "Background": "FFFFFF",
+                                        "Height": 132,
+                                        "Items": [
+                                            {
+                                                "BlockType": "text",
+                                                "Style": "LightText",
+                                                "HorizontalAlignment": "Left",
+                                                "Source": "[POLE]",
+                                                "Foreground": "{LightFontColour}"
+                                            },
+                                            {
+                                                "BlockType": "component",
+                                                "Component": "DriverLine",
+                                                "ComponentOptions": {
+                                                    "Vars": {
+                                                        "align": "Right",
+                                                        "fontsize": 60
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "BlockType": "image",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "IsEnabled": true,
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.right.png"
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "stack",
+                        "WidthPercent": 60,
+                        "RenderIf": "{Session.DriverDayDriver, Converter=EmptyObjectToFalse}",
+                        "Items": [
+                            {
+                                "BlockType": "image",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "IsEnabled": true,
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.left.png"
+                            },
+                            {
+                                "BlockType": "itemstack",
+                                "Width": "*",
+                                "ItemStackOptions": {
+                                    "ItemSource": "{Session.Drivers}",
+                                    "FilterMember": "IsRaceDriverOfDay",
+                                    "FilterMemberValue": "True",
+                                    "ItemTemplate": {
+                                        "BlockType": "dock",
+                                        "Background": "FFFFFF",
+                                        "Height": 132,
+                                        "Items": [
+                                            {
+                                                "BlockType": "text",
+                                                "Style": "LightText",
+                                                "HorizontalAlignment": "Left",
+                                                "Source": "[DOTD]",
+                                                "Foreground": "{LightFontColour}"
+                                            },
+                                            {
+                                                "BlockType": "component",
+                                                "Component": "DriverLine",
+                                                "ComponentOptions": {
+                                                    "Vars": {
+                                                        "align": "Right",
+                                                        "fontsize": 60
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "BlockType": "image",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "IsEnabled": true,
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.right.png"
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "stack",
+                        "WidthPercent": 78,
+                        "Items": [
+                            {
+                                "BlockType": "image",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "IsEnabled": true,
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.left.png"
+                            },
+                            {
+                                "BlockType": "itemstack",
+                                "Width": "*",
+                                "ItemStackOptions": {
+                                    "ItemSource": "{Session.Drivers}",
+                                    "OrderByDescending": "PositionJump",
+                                    "Limit": 1,
+                                    "ItemTemplate": {
+                                        "BlockType": "dock",
+                                        "Background": "FFFFFF",
+                                        "Height": 132,
+                                        "Items": [
+                                            {
+                                                "BlockType": "text",
+                                                "Style": "LightText",
+                                                "HorizontalAlignment": "Left",
+                                                "Source": "[BIGGEST GAIN]",
+                                                "Foreground": "{LightFontColour}"
+                                            },
+                                            {
+                                                "BlockType": "component",
+                                                "Component": "DriverLine",
+                                                "ComponentOptions": {
+                                                    "Vars": {
+                                                        "align": "Right",
+                                                        "fontsize": 60
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "BlockType": "image",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "IsEnabled": true,
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.right.png"
+                            }
+                        ],
+                        "Triggers": [
+                            {
+                                "Condition": "{Session.IsLiveData, Converter=BoolReverse}",
+                                "Property": "WidthPercent",
+                                "Value": 100
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "stack",
+                        "RenderIf": "{Session.IsLiveData}",
+                        "WidthPercent": 84,
+                        "Items": [
+                            {
+                                "BlockType": "image",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "IsEnabled": true,
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.left.png"
+                            },
+                            {
+                                "BlockType": "itemstack",
+                                "Width": "*",
+                                "ItemStackOptions": {
+                                    "ItemSource": "{Session.Drivers}",
+                                    "OrderByDescending": "OvertakesCount",
+                                    "Limit": 1,
+                                    "ItemTemplate": {
+                                        "BlockType": "dock",
+                                        "Background": "FFFFFF",
+                                        "Height": 132,
+                                        "Items": [
+                                            {
+                                                "BlockType": "text",
+                                                "Style": "LightText",
+                                                "HorizontalAlignment": "Left",
+                                                "Source": "[MOST OVERTAKES]",
+                                                "Foreground": "{LightFontColour}"
+                                            },
+                                            {
+                                                "BlockType": "component",
+                                                "Component": "DriverLine",
+                                                "ComponentOptions": {
+                                                    "Vars": {
+                                                        "align": "Right",
+                                                        "fontsize": 60
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "BlockType": "image",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "IsEnabled": true,
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.right.png"
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "stack",
+                        "RenderIf": "{Session.IsLiveData}",
+                        "WidthPercent": 100,
+                        "Items": [
+                            {
+                                "BlockType": "image",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "IsEnabled": true,
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.left.png"
+                            },
+                            {
+                                "BlockType": "itemstack",
+                                "Width": "*",
+                                "ItemStackOptions": {
+                                    "ItemSource": "{Session.Drivers}",
+                                    "OrderByDescending": "MaxSpeed",
+                                    "Limit": 1,
+                                    "ItemTemplate": {
+                                        "BlockType": "dock",
+                                        "Background": "FFFFFF",
+                                        "Height": 132,
+                                        "Items": [
+                                            {
+                                                "BlockType": "text",
+                                                "Style": "LightText",
+                                                "HorizontalAlignment": "Left",
+                                                "Source": "[TOP SPEED]",
+                                                "Foreground": "{LightFontColour}"
+                                            },
+                                            {
+                                                "BlockType": "component",
+                                                "Component": "DriverLine",
+                                                "ComponentOptions": {
+                                                    "Vars": {
+                                                        "align": "Right",
+                                                        "fontsize": 60
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "BlockType": "image",
+                                "Width": 30,
+                                "Height": 132,
+                                "Colorize": {
+                                    "IsEnabled": true,
+                                    "Color": "FFFFFF"
+                                },
+                                "Source": "cell.right.png"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,215 @@
+{
+    "BlockRoot": {
+        "BlockType": "stack",
+        "Items": [
+            {
+                "BlockType": "image",
+                "Height": 200,
+                "Background": "{SecondaryColour}",
+                "Padding": "50",
+                "ImageOptions": {
+                    "Path": "FIA.png"
+                }
+            },
+            {
+                "BlockType": "dock",
+                "Height": "*",
+                "Items": [
+                    {
+                        "BlockType": "stack",
+                        "Background": "FFFFFF",
+                        "Padding": "40,0",
+                        "Height": "*",
+                        "Items": [
+                            {
+                                "BlockType": "text",
+                                "MarginTop": 10,
+                                "HorizontalAlignment": "Left",
+                                "VerticalAlignment": "Center",
+                                "Source": "{Penalty.Driver.{{NameConvention}}, Converter=StringFormatReverse, Parameter={Penalty.Driver.{{NameConvention}}{{NameUpperString}}}}",
+                                "Height": "*",
+                                "Foreground": "{SecondaryColour}",
+                                "FontSize": 70,
+                                "FontName": "{F1-Regular}",
+                                "Triggers": [
+                                    {
+                                        "Condition": "{NameConvention, Converter=StringEquals, Parameter=Full Name}",
+                                        "Property": "Source",
+                                        "Value": "{Penalty.Driver.Name, Converter=StringFormatReverse, Parameter={Penalty.Driver.Name{{NameUpperString}}}} {Penalty.Driver.RealName, Converter=StringFormatReverse, Parameter={Penalty.Driver.RealName{{NameUpperString}}}}"
+                                    },
+                                    {
+                                        "Condition": "{NameSwitch}",
+                                        "ConditionAnd": "{NameConvention, Converter=StringEquals, Parameter=Full Name}",
+                                        "Property": "Source",
+                                        "Value": "{Penalty.Driver.RealName, Converter=StringFormatReverse, Parameter={Penalty.Driver.RealName{{NameUpperString}}}} {Penalty.Driver.Name, Converter=StringFormatReverse, Parameter={Penalty.Driver.Name{{NameUpperString}}}}"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Time Penalty and Penalty Points",
+                        "BlockType": "stack",
+                        "Background": "{SecondaryColour}",
+                        "Height": "*",
+                        "Padding": "40,0",
+                        "Items": [
+                            {
+                                "BlockType": "text",
+                                "MarginTop": 16,
+                                "Source": "{Penalty.PenaltySeconds}",
+                                "FontName": "{F1-Bold}",
+                                "Height": "*",
+                                "FontSize": 160,
+                                "VerticalAlignment": "Center",
+                                "RenderIf": "{Penalty.PenaltySeconds, Converter=NumberNotEquals, Parameter=0}",
+                                "Triggers": [
+                                    {
+                                        "Condition": "{Penalty.PenaltySeconds, Converter=NumberGreater, Parameter=0}",
+                                        "Property": "Source",
+                                        "Value": "+{Penalty.PenaltySeconds}"
+                                    }
+                                ]
+                            },
+                            {
+                                "BlockType": "text",
+                                "MarginTop": 16,
+                                "Source": "[SECONDS]",
+                                "FontName": "{F1-Bold}",
+                                "PaddingLeft": 20,
+                                "Height": "*",
+                                "FontSize": 90,
+                                "VerticalAlignment": "Center",
+                                "RenderIf": "{Penalty.PenaltySeconds, Converter=NumberNotEquals, Parameter=0}"
+                            },
+                            {
+                                "BlockType": "text",
+                                "MarginTop": 16,
+                                "Source": "+{Penalty.PenaltyPoints}",
+                                "FontName": "{F1-Bold}",
+                                "PaddingLeft": 40,
+                                "Height": "*",
+                                "FontSize": 160,
+                                "VerticalAlignment": "Center",
+                                "RenderIf": "{Penalty.PenaltyPoints, Converter=NumberNotEquals, Parameter=0}"
+                            },
+                            {
+                                "BlockType": "text",
+                                "MarginTop": 16,
+                                "Source": "[PENALTY POINTS]",
+                                "FontName": "{F1-Bold}",
+                                "PaddingLeft": 20,
+                                "Height": "*",
+                                "FontSize": 90,
+                                "VerticalAlignment": "Center",
+                                "RenderIf": "{Penalty.PenaltyPoints, Converter=NumberNotEquals, Parameter=0}",
+                                "Triggers": [
+                                    {
+                                        "Condition": "{Penalty.PenaltyPoints, Converter=NumberEquals, Parameter=1}",
+                                        "Property": "Source",
+                                        "Value": "[PENALTY POINT]"
+                                    }
+                                ]
+                            },
+                            {
+                                "BlockType": "text",
+                                "MarginTop": 16,
+                                "Source": "+{Penalty.PenaltyWarnings}",
+                                "FontName": "{F1-Bold}",
+                                "PaddingLeft": 40,
+                                "Height": "*",
+                                "FontSize": 160,
+                                "VerticalAlignment": "Center",
+                                "RenderIf": "{Penalty.PenaltyWarnings, Converter=NumberNotEquals, Parameter=0}"
+                            },
+                            {
+                                "BlockType": "text",
+                                "MarginTop": 16,
+                                "Source": "[WARNINGS]",
+                                "FontName": "{F1-Bold}",
+                                "PaddingLeft": 20,
+                                "Height": "*",
+                                "FontSize": 90,
+                                "VerticalAlignment": "Center",
+                                "RenderIf": "{Penalty.PenaltyWarnings, Converter=NumberNotEquals, Parameter=0}",
+                                "Triggers": [
+                                    {
+                                        "Condition": "{Penalty.PenaltyWarnings, Converter=NumberEquals, Parameter=1}",
+                                        "Property": "Source",
+                                        "Value": "[WARNING]"
+                                    }
+                                ]
+                            },
+                            {
+                                "BlockType": "text",
+                                "MarginTop": 16,
+                                "Source": "+{Penalty.PenaltyPositions}",
+                                "FontName": "{F1-Bold}",
+                                "PaddingLeft": 40,
+                                "Height": "*",
+                                "FontSize": 160,
+                                "VerticalAlignment": "Center",
+                                "RenderIf": "{Penalty.PenaltyPositions, Converter=NumberNotEquals, Parameter=0}"
+                            },
+                            {
+                                "BlockType": "text",
+                                "MarginTop": 16,
+                                "Source": "[POSITIONS]",
+                                "FontName": "{F1-Bold}",
+                                "PaddingLeft": 20,
+                                "Height": "*",
+                                "FontSize": 90,
+                                "VerticalAlignment": "Center",
+                                "RenderIf": "{Penalty.PenaltyPositions, Converter=NumberNotEquals, Parameter=0}",
+                                "Triggers": [
+                                    {
+                                        "Condition": "{Penalty.PenaltyPositions, Converter=NumberEquals, Parameter=1}",
+                                        "Property": "Source",
+                                        "Value": "[POSITION]"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Penalty Actions",
+                        "BlockType": "stack",
+                        "Background": "{SecondaryColour}",
+                        "Height": "*",
+                        "Padding": "40,0",
+                        "Items": [
+                            {
+                                "BlockType": "itemstack",
+                                "VerticalAlignment": "Center",
+                                "Spacing": 40,
+                                "ItemStackOptions": {
+                                    "ItemSource": "{Penalty.PenaltyActions}",
+                                    "ItemTemplate": {
+                                        "BlockType": "text",
+                                        "MarginTop": 16,
+                                        "Source": "{Item.FullTypeAndValueDescription, Converter=StringToUpperString}",
+                                        "FontName": "{F1-Bold}",
+                                        "Height": "*",
+                                        "FontSize": 90,
+                                        "VerticalAlignment": "Center",
+                                        "RenderIf": "{Penalty.PenaltyActions, Converter=EmptyObjectToFalse}"
+                                    }
+                                }
+                            },
+                            {
+                                "BlockType": "text",
+                                "MarginTop": 10,
+                                "Source": "[NO FURTHER ACTION]",
+                                "FontName": "{F1-Bold}",
+                                "Height": "*",
+                                "FontSize": 90,
+                                "VerticalAlignment": "Center",
+                                "RenderIf": "{Penalty.IsNoPunishment}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
