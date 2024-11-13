@@ -1,0 +1,34 @@
+{
+  "ThemeId": "Dark373.contest_theme_2024_test",
+  "Name": "2024 Contest Theme Test Build",
+  "Author": "Dark373",
+  "Version": "1.0.0",
+  "DefaultLocalizationId": "en-GB",
+  "Links": [
+    {
+      "Type": "SupportAuthor",
+      "Url": "https://www.paypal.me/373Dark?locale.x=en_GB",
+      "Caption": "Support Me"
+    },
+    {
+      "Type": "ThemeIssueReport",
+      "Url": "https://github.com/Dark373/F1-2024-Theme/issues",
+      "Caption": "Bug Report"
+    }
+  ],
+  "RequiredLogotypeVariants": {
+    "Team": [
+      "Light"
+    ]
+  },
+  "LogotypeBehaviours": [
+    {
+      "Category": "Team",
+      "Variant": "Light",
+      "UseFallbackSource": true,
+      "UseFallbackVariant": true,
+      "SetVariantByDefault": false
+    }
+  ],
+  "ForceLiveriesLoading": false
+}
