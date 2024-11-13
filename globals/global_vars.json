@@ -1,0 +1,56 @@
+{
+    "FontNameDefault": "BigShouldersDisplay-Black",
+    "Bold": "futuraef-bold",
+    "Compact": "Compacta-Bold",
+    "Regular": "PublicSans-Regular",
+    "F1-Black": "Formula1-Black",
+    "F1-Bold": "Formula1-Bold",
+    "F1-Regular": "Formula1-Regular",
+    "ForegroundDefault": "FFFFFF",
+    //championship type
+    "Type": "Season.LineupsBasedType",
+    "Teams": "Team",
+    "Cars": "Car",
+    //background colours
+    "PrimaryColour": "002754",
+    "SecondaryColour": "001A38",
+    //public property vars
+    "Season Name": "Name",
+    "Category Name": "MainLeagueCategory.Name",
+    "Category Short Name": "MainLeagueCategory.ShortName",
+    "Name": "Name",
+    "RealName": "RealName",
+    "InGameName": "InGameName",
+    "Full Name": "Name",
+    "Normal": "",
+    "Upper Case": ", Converter=StringToUpperString",
+    "All Drivers": "False",
+    //font color global
+    "LightFontColour": "002754",
+    "DarkFontColour": "001A38",
+    "BlackFontColour": "000000",
+    // calendar
+    "LightBlue": "00B4E1",
+    "SprintColour": "FF0000",
+    "CalendarDateFontColour": "FFFFFF",
+    "CalendarRoundCountFontColour": "D9D9D9",
+    "CalendarCircuitColour": "00B4E1",
+    "CalendarCountryNameFontColor": "002754",
+    // reserves
+    "ReserveColour": "000000",
+    // circuit colours
+    "BELHeaderCircuitColour": "FFFFFF",
+    "GERHeaderCircuitColour": "FFFFFF",
+    "UAEHeaderCircuitColour": "00B4E1",
+    // standings colours
+    "P1FontColour": "D1B000",
+    "P2FontColour": "71706E",
+    "P3FontColour": "CD7F32",
+    // session colours
+    "SessionFastestLapFontColour": "B039E1",
+    // fastest lap render
+    "1stDriverNameFontSize": 40,
+    "2ndDriverNameFontSize": 26,
+    "3rdDriverNameFontSize": 26,
+    "FastestLapLeagueLogoSize": 100
+}

@@ -1,0 +1,178 @@
+{
+    "Properties": [
+        {
+            "Name": "ThemeCategory",
+            "PublicName": "Season Names",
+            "Description": "Season naming options",
+            "Category": "Theme Global",
+            "Type": "Enum",
+            "EnumValues": [
+                "Season Name",
+                "Category Name",
+                "Category Short Name",
+                "Do Not Render"
+            ],
+            "DefaultValue": "Season Name"
+        },
+        {
+            "Name": "ThemeBackground",
+            "PublicName": "Enable Backgrounds",
+            "Description": "Enables background images from all renders.",
+            "Category": "Theme Global",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "NameConvention",
+            "PublicName": "Naming Conventions",
+            "Description": "Changes which name fields are used. When (Full Name) is active, both (Name) & (RealName) will be used.",
+            "Category": "Driver Global",
+            "Type": "Enum",
+            "EnumValues": [
+                "Name",
+                "RealName",
+                "InGameName",
+                "Full Name"
+            ],
+            "DefaultValue": "Name"
+        },
+        {
+            "Name": "NameSwitch",
+            "PublicName": "Switch Name Fields",
+            "Description": "Changes the order of name fields on renders. When ative, (Real Name) will become before (Name): Only works when (Full Name) is active.",
+            "Category": "Driver Global",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "NameUpperString",
+            "PublicName": "Upper Case Names",
+            "Description": "Sets all name fields to uppercase.",
+            "Category": "Driver Global",
+            "Type": "Enum",
+            "EnumValues": [
+                "Normal",
+                "Upper Case"
+            ],
+            "DefaultValue": "Normal"
+        },
+        {
+            "Name": "CalendarTime",
+            "PublicName": "Render Time",
+            "Description": "Renders time alongside date",
+            "Category": "Calendar",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "CalendarCircuitInfo",
+            "PublicName": "Render Circuit Information",
+            "Description": "Renders info such as lap record",
+            "Category": "Calendar",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "CalendarCol",
+            "PublicName": "Event Column Count",
+            "Description": "Amount of columns",
+            "Category": "Calendar",
+            "Type": "Integer",
+            "DefaultValue": 4,
+            "MinimumValue": 1
+        },
+        {
+            "Name": "CalendarRow",
+            "PublicName": "Event Row Count",
+            "Description": "Amount of rows",
+            "Category": "Calendar",
+            "Type": "Integer",
+            "DefaultValue": 4,
+            "MinimumValue": 1
+        },
+        {
+            "Name": "CalendarSprint",
+            "PublicName": "Render Sprint Races",
+            "Description": "Renders sprint races seperatly",
+            "Category": "Calendar",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "CalendarSprintCol",
+            "PublicName": "Sprint Event Column Count",
+            "Description": "Amount of columns",
+            "Category": "Calendar",
+            "Type": "Integer",
+            "DefaultValue": 3,
+            "MinimumValue": 1
+        },
+        {
+            "Name": "CalendarSprintRow",
+            "PublicName": "Sprint Event Row Count",
+            "Description": "Amount of rows",
+            "Category": "Calendar",
+            "Type": "Integer",
+            "DefaultValue": 1,
+            "MinimumValue": 1
+        },
+        {
+            "Name": "Gap",
+            "PublicName": "Points Gap Type",
+            "Description": "",
+            "Category": "Standings",
+            "Type": "Enum",
+            "EnumValues": [
+                "PointsToLeaderDiff",
+                "PointsToAboveDiff"
+            ],
+            "DefaultValue": "PointsToLeaderDiff"
+        },
+        {
+            "Name": "DisplayedDrivers",
+            "PublicName": "Driver Filter",
+            "Description": "Filters drivers on standings based on their seat type.",
+            "Category": "Standings",
+            "Type": "Enum",
+            "EnumValues": [
+                "All Drivers",
+                "Reserves"
+            ],
+            "DefaultValue": "PointsToLeaderDiff"
+        },
+        {
+            "Name": "StandingsProgress",
+            "PublicName": "Standings Progress",
+            "Description": "Note: teams standings does not support Position Progress",
+            "Category": "Standings",
+            "Type": "Enum",
+            "EnumValues": [
+                "Points",
+                "Position"
+            ],
+            "DefaultValue": "Points"
+        },
+        {
+            "Name": "StandingsProgressEvents",
+            "PublicName": "Render All Progress Events",
+            "Description": "Renders all upcoming events on progress standings.",
+            "Category": "Standings",
+            "Type": "Bool",
+            "DefaultValue": true
+        }
+    ],
+    "Categories": [
+        {
+            "Name": "Theme Global"
+        },
+        {
+            "Name": "Driver Global"
+        },
+        {
+            "Name": "Calendar"
+        },
+        {
+            "Name": "Standings"
+        }
+    ]
+}
