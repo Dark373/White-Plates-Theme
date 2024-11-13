@@ -1,6 +1,6 @@
 {
-  "ThemeId": "Dark373.contest_theme_2024_test",
-  "Name": "2024 Contest Theme Test Build",
+  "ThemeId": "Dark373.white.plates.theme",
+  "Name": "White Plates Theme",
   "Author": "Dark373",
   "Version": "1.0.0",
   "DefaultLocalizationId": "en-GB",
@@ -12,7 +12,7 @@
     },
     {
       "Type": "ThemeIssueReport",
-      "Url": "https://github.com/Dark373/F1-2024-Theme/issues",
+      "Url": "https://github.com/Dark373/White-Plates-Theme/issues",
       "Caption": "Bug Report"
     }
   ],
