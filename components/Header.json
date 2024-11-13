@@ -1,0 +1,99 @@
+{
+    "ComponentName": "Header",
+    "BlockType": "stack",
+    "Orientation": "Vertical",
+    "Width": "*",
+    "Items": [
+        {
+            "BlockType": "dock",
+            "Width": "*",
+            "Items": [
+                {
+                    "BlockType": "image",
+                    "Height": 80,
+                    "VerticalAlignment": "Center",
+                    "ImageOptions": {
+                        "Path": "{Season.LeagueInfo.LeagueLogo}"
+                    }
+                },
+                {
+                    "BlockType": "text",
+                    "VerticalAlignment": "Center",
+                    "MarginLeft": 20,
+                    "Height": "*",
+                    "Source": "{Season.LeagueInfo.LeagueName, Converter=StringToUpperString} {Season.Name, Converter=StringToUpperString}",
+                    "Style": "HeaderTopLineStyle"
+                },
+                {
+                    "BlockType": "shape",
+                    "Height": 5,
+                    "WidthPercent": 100,
+                    "Margin": "40,0",
+                    "VerticalAlignment": "Center",
+                    "ShapeOptions": {
+                        "Fill": "FFFFFF"
+                    }
+                },
+                {
+                    "BlockType": "image",
+                    "HorizontalAlignment": "Right",
+                    "VerticalAlignment": "Center",
+                    "Height": 140,
+                    "Colorize": {
+                        "Color": "FFFFFF"
+                    },
+                    "ImageOptions": {
+                        "Path": "{Season.Championship.LogotypePath}"
+                    }
+                }
+            ]
+        },
+        {
+            "BlockType": "stack",
+            "Width": "*",
+            "Items": [
+                {
+                    "BlockType": "stack",
+                    "Orientation": "Vertical",
+                    "Spacing": -10,
+                    "StretchWidth": true,
+                    "Items": [
+                        {
+                            "BlockType": "text",
+                            "Source": "<TopLineSource>",
+                            "Style": "HeaderBottomLineStyle"
+                        },
+                        {
+                            "BlockType": "text",
+                            "Source": "<BottomLineSource>",
+                            "Style": "HeaderBottomLineStyle"
+                        }
+                    ]
+                },
+                {
+                    "BlockType" : "image",
+                    "Height": 240,
+                    "HorizontalAlignment": "Right",
+                    "VerticalAlignment": "Center",
+                    "ImageOptions" : {
+                        "Path" : "<FlagPath>"
+                    }
+                },
+                {
+                    "BlockType": "image",
+                    "Height": 200,
+                    "Margin": "-255,0,0,0",
+                    "HorizontalAlignment": "Right",
+                    "VerticalAlignment": "Center",
+                    "Colorize": {
+                        "IsEnabled": true,
+                        "Color": "<CircuitColour>"
+                    },
+                    "ImageOptions": {
+                        "Path": "<CircuitPath>"
+                    }
+                }
+            ]
+        }
+    ]
+}

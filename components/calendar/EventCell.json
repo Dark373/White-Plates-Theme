@@ -1,0 +1,109 @@
+{
+    "ComponentName": "EventCell",
+    "BlockType": "stack",
+    "Orientation": "Vertical",
+    "Items": [
+        {
+            "BlockType": "dock",
+            "Orientation": "Vertical",
+            "Width": 510,
+            "Height": 350,
+            "BackgroundImage": "calendar.white.cell.png",
+            "ColorizeBackground": {
+                "Enabled": true,
+                "Color": "{LightBlue}"
+     
+            },
+            "Items": [
+                {
+                    "BlockType": "stack",
+                    "Items": [
+                        {
+                            "BlockType": "image",
+                            "Width": 93,
+                            "Height": 83,
+                            "MarginLeft": 13,
+                            "ImageOptions": {
+                                "Path": "{Item.Track.Nation.LogotypePath}"
+                            }
+                        },
+                        {
+                            "BlockType": "stack",
+                            "Orientation": "Vertical",
+                            "VerticalAlignment": "Center",
+                            "MarginTop": 4,
+                            "MarginLeft": 30,
+                            "Items": [
+                                {
+                                    "BlockType": "text",
+                                    "Source": "[{Item.DateLocal, Converter=DateToDayOfMonth} [{Item.DateLocal, Converter=DateToMonthInWords}]]",
+                                    "FontSize": 40,
+                                    "Foreground": "{CalendarDateFontColour}",
+                                    "Triggers": [
+                                        {
+                                            "Condition": "{CalendarTime}",
+                                            "Property": "Source",
+                                            "Value": "[{Item.DateLocal, Converter=DateToDayOfMonth} [{Item.DateLocal, Converter=DateToMonthInWords}]] - {Item.DateLocal, Converter=DateToTime}"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "BlockType": "text",
+                                    "Source": "{Item.Description, Converter=StringToUpperString}",
+                                    "FontSize": 30,
+                                    "Foreground": "{CalendarDateFontColour}"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "dock",
+                    "Width": "*",
+                    "Items": [
+                        {
+                            "BlockType": "text",
+                            "Source": "{Item.Position, Converter=NumberSubtract, Parameter={Season.SeasonOverallNumberEvents, Converter=NumberSubtract, Parameter={Season.SeasonOverallNumberEventsExcludingNonChampionship}}}",
+                            "FontSize": 220,
+                            "Margin": "10,5,0,0",
+                            "Foreground": "{CalendarRoundCountFontColour}",
+                            "Triggers": [
+                                {
+                                    "Condition": "{Item.Position, Converter=NumberLess, Parameter=10}",
+                                    "Property": "Margin",
+                                    "Value": "10,5,40,0"
+                                }
+                            ]
+                        },
+                        {
+                            "BlockType": "image",
+                            "Height": 220,
+                            "MarginTop": 5,
+                            "Colorize": {
+                                "IsEnabled": true,
+                                "Color": "{CalendarCircuitColour}"
+                            },
+                            "ImageOptions": {
+                                "Path": "track maps/{Item.Track.CircuitName}.png"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "text",
+                    "Source": "{Item.Track.CircuitName, Converter=StringToUpperString}",
+                    "FontSize": 46,
+                    "HorizontalAlignment": "Center",
+                    "Foreground": "{CalendarCountryNameFontColor}"
+                }
+            ],
+            "Triggers": [
+                {
+                    "Condition": "{Item.IsHaveSprintSessions}",
+                    "Property": "ColorizeBackground.Color",
+                    "Value": "{SprintColour}"
+                }
+            ]
+        }
+    ]
+}
