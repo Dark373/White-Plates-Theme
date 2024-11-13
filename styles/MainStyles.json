@@ -1,0 +1,17 @@
+[
+    {
+        "StyleName": "LightText",
+        "FontName": "{Regular}",
+        "VerticalAlignment": "Center",
+        "HorizontalAlignment": "Center",
+        "Height": "*",
+        "FontSize": 45
+    },
+    {
+        "StyleName": "DefaultText",
+        "VerticalAlignment": "Center",
+        "HorizontalAlignment": "Center",
+        "Height": "*",
+        "FontSize": 60
+    }
+]
