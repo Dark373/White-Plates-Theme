@@ -1,0 +1,190 @@
+{
+    "ComponentName": "HeaderBlockCalendar",
+    "BlockType": "dock",
+    "Orientation": "Vertical",
+    "MinWidth": 1200,
+    "Items": [
+        {
+            "BlockType": "stack",
+            "VerticalAlignment": "Top",
+            "Orientation": "Vertical",
+            "HorizontalAlignment": "Center",
+            "Spacing": 60,
+            "Items": [
+                {
+                    "BlockType": "text",
+                    "Source": "{Season.LeagueInfo.LeagueName, Converter=StringToUpperString}",
+                    "HorizontalAlignment": "Center",
+                    "FontName": "{Regular}",
+                    "FontSize": 50
+                },
+                {
+                    "BlockType": "stack",
+                    "Orientation": "Vertical",
+                    "HorizontalAlignment": "Center",
+                    "Items": [
+                        {
+                            "BlockType": "text",
+                            "Source": "{Season.{{ThemeCategory}}, Converter=StringToUpperString}",
+                            "HorizontalAlignment": "Center",
+                            "FontSize": 180
+                        },
+                        {
+                            "BlockType": "text",
+                            "Source": "[SPRINT RACES]",
+                            "HorizontalAlignment": "Center",
+                            "Foreground": "{SprintColour}",
+                            "FontSize": 180,
+                            "Triggers": [
+                                {
+                                    "Condition": "{CalendarSprint, Converter=BoolReverse}",
+                                    "Setters": [
+                                        {
+                                            "Property": "Source",
+                                            "Value": "[CALENDAR]"
+                                        },
+                                        {
+                                            "Property": "Foreground",
+                                            "Value": "FFFFFF"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "Triggers": [
+                {
+                    "Condition": "{CalendarSprint, Converter=BoolReverse}",
+                    "Property": "VerticalAlignment",
+                    "Value": "Center"
+                }
+            ]
+        },
+        {
+            "BlockType": "stack",
+            "RenderIf": "{CalendarSprint}",
+            "Orientation": "Vertical",
+            "VerticalAlignment": "Center",
+            "HorizontalAlignment": "Center",
+            "Spacing": 15,
+            "Items": [
+                {
+                    "BlockType": "itemstack",
+                    "Spacing": 15,
+                    "Orientation": "Horizontal",
+                    "ItemStackOptions": {
+                        "ItemSource": "{Events.Events}",
+                        "FilterMember": "IsHaveSprintSessions",
+                        "FilterMemberValue": "False",
+                        "Limit": "{CalendarSprintCol}",
+                        "ItemTemplate": {
+                            "BlockType": "component",
+                            "Component": "EventCell"
+                        }
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{CalendarSprint}",
+                            "Property": "ItemStackOptions.FilterMemberValue",
+                            "Value": "True"
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "itemstack",
+                    "Spacing": 15,
+                    "RenderIf": "{CalendarSprintRow, Converter=NumberGreater, Parameter=1}",
+                    "Orientation": "Horizontal",
+                    "ItemStackOptions": {
+                        "ItemSource": "{Events.Events}",
+                        "FilterMember": "IsHaveSprintSessions",
+                        "FilterMemberValue": "False",
+                        "Limit": "{CalendarSprintCol}",
+                        "IndexStart": "{CalendarSprintCol}",
+                        "ItemTemplate": {
+                            "BlockType": "component",
+                            "Component": "EventCell"
+                        }
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{CalendarSprint}",
+                            "Property": "ItemStackOptions.FilterMemberValue",
+                            "Value": "True"
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "itemstack",
+                    "Spacing": 15,
+                    "RenderIf": "{CalendarSprintRow, Converter=NumberGreater, Parameter=2}",
+                    "Orientation": "Horizontal",
+                    "ItemStackOptions": {
+                        "ItemSource": "{Events.Events}",
+                        "FilterMember": "IsHaveSprintSessions",
+                        "FilterMemberValue": "False",
+                        "Limit": "{CalendarSprintCol}",
+                        "IndexStart": "{CalendarSprintCol, Converter=NumberMultiply, Parameter=2}",
+                        "ItemTemplate": {
+                            "BlockType": "component",
+                            "Component": "EventCell"
+                        }
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{CalendarSprint}",
+                            "Property": "ItemStackOptions.FilterMemberValue",
+                            "Value": "True"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "BlockType": "dock",
+            "RenderIf": "{Season.LeagueInfo.LeagueLogo, Converter=EmptyObjectToFalse}",
+            "VerticalAlignment": "Bottom",
+            "HorizontalAlignment": "Center",
+            "Items": [
+                {
+                    "BlockType": "stack",
+                    "Spacing": 80,
+                    "HorizontalAlignment": "Center",
+                    "Items": [
+                        {
+                            "BlockType": "image",
+                            "Height": 140,
+                            "VerticalAlignment": "Center",
+                            "HorizontalAlignment": "Center",
+                            "ImageOptions": {
+                                "Path": "{Season.LeagueInfo.LeagueLogo}"
+                            }
+                        },
+                        {
+                            "BlockType": "shape",
+                            "Height": 100,
+                            "Width": 4,
+                            "VerticalAlignment": "Center",
+                            "ShapeOptions": {
+                                "Fill": "FFFFFF"
+                            }
+                        },
+                        {
+                            "BlockType": "image",
+                            "VerticalAlignment": "Center",
+                            "Colorize": {
+                                "Color": "FFFFFF"
+                            },
+                            "Height": 200,
+                            "ImageOptions": {
+                                "Path": "{Season.Championship.LogotypePath}"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

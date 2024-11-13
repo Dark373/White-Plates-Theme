@@ -1,0 +1,49 @@
+{
+    "ComponentName": "SingleCell",
+    "BlockType": "dock",
+    "Items": [
+        {
+            "BlockType": "image",
+            "Width": 30,
+            "Height": 132,
+            "Colorize": {
+                "Color": "FFFFFF"
+            },
+            "Source": "cell.Left.png"
+        },
+        {
+            "BlockType": "stack",
+            "HorizontalAlignment": "Center",
+            "VerticalAlignment": "Center",
+            "Background": "FFFFFF",
+            "Width": "*",
+            "Height": "*",
+            "Items": [
+                {
+                    "ComponentName": "Cell",
+                    "BlockType": "text",
+                    "Width": "*",
+                    "Height": "*",
+                    "StretchWidth": true,
+                    "HorizontalAlignment": "Center",
+                    "VerticalAlignment": "Center",
+                    "Foreground": "<FG>",
+                    "FontName": "<font>",
+                    "FontSize": 60,
+                    "Opacity": "<opacity>",
+                    "Source": "<source>"
+                }
+            ]
+        },
+        {
+            "BlockType": "image",
+            "Width": 30,
+            "Height": 132,
+            "HorizontalAlignment": "Right",
+            "Colorize": {
+                "Color": "FFFFFF"
+            },
+            "Source": "cell.right.png"
+        }
+    ]
+}

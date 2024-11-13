@@ -1,0 +1,14 @@
+{
+    "ComponentName": "Cell",
+    "BlockType": "text",
+    "Width": "*",
+    "Height": "*",
+    "StretchWidth": true,
+    "HorizontalAlignment": "<align>",
+    "VerticalAlignment": "Center",
+    "Background": "FFFFFF",
+    "Foreground": "{BlackFontColour}",
+    "FontName": "<font>",
+    "FontSize": 60,
+    "Source": "<source>"
+}
