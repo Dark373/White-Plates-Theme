@@ -257,7 +257,7 @@
                                 },
                                 "Triggers": [
                                     {
-                                        "Condition": "{Item.IsOverallFastestSector2}",
+                                        "Condition": "{Item.IsOverallFastestSector1}",
                                         "ComponentVar": "FG",
                                         "Value": "{SessionFastestLapFontColour}"
                                     },
