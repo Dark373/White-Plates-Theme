@@ -357,7 +357,7 @@
                                             {
                                                 "BlockType": "text",
                                                 "PaddingRight": 20,
-                                                "Source": "{Item.StartLapNumber}",
+                                                "Source": "{Item.Laps}",
                                                 "Style": "DefaultText",
                                                 "Foreground": "000000"
                                             }
